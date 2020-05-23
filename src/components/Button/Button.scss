@@ -1,0 +1,29 @@
+/* Button CSS - START */
+.button {
+  padding: 10px 20px;
+  border: 1px solid var(--primary);
+  text-transform: uppercase;
+  font-family: 'IBM Plex Sans', sans-serif;
+  border-radius: 5px;
+  &.dark {
+    background-color: var(--primary);
+    color: var(--white);
+  }
+  &.light {
+    background-color: var(--white);
+    color: var(--primary);
+  }
+  &.large{
+    width: 100%;
+    font-size: var(--input);
+  }
+  &.medium{
+    width: 250px;
+    font-size: var(--regular);
+  }
+  &.small{
+    width: 150px;
+    font-size: var(--small);
+  }
+}
+/* Button CSS - END */
