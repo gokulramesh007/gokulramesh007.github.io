@@ -1,38 +1,39 @@
-.App {
-  text-align: center;
+/* App CSS - START */
+html body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin: 0;
+  background-color: var(--body-primary-grey);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+    box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+:root {
+  /* Color variables  */
+  --primary: #A50014;
+  --body-primary-grey: #f7f7f7;
+  --white: #fff;
+  --black: #000;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* Size Variables */
+  --h1: 38px;
+  --h2: 34px;
+  --h3: 30px;
+  --h4: 26px;
+  --h5: 20px;
+  --h6: 19px;
+  --input: 18px;
+  --regular17: 17px;
+  --regular: 16px;
+  --regular15: 15px;
+  --medium: 14px;
+  --smallMedium: 13px;
+  --small: 12px;
+  --smaller: 10px;
+  --tiny: 8.5px;
+  --minute: 6px;
+  --large: 25px;
+  --extraLarge: 50px;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* Header CSS - END */
