@@ -5,12 +5,11 @@ import { Container, FeatureTile } from "../../../components";
 import "./FeaturesList.scss";
 
 const FeaturesList = props => {
-  const _renderLocationTiles = () => {
-    let locationList = [],
+  const _renderFeatureTiles = () => {
+    let featureList = [],
       i = 0;
-
     props.data.forEach(item => {
-      locationList.push(
+      featureList.push(
         <div className="tiles" key={i}>
           <Container size="large">
             {_createFeatureTile(item)}
@@ -19,7 +18,7 @@ const FeaturesList = props => {
       );
       i++;
     });
-    return locationList;
+    return featureList;
   };
 
   const _createFeatureTile = feature => {
@@ -34,7 +33,7 @@ const FeaturesList = props => {
 
   return (
     <div className={`features-list-wrapper ${props.column}`}>
-      {_renderLocationTiles()}
+      {_renderFeatureTiles()}
     </div>
   );
 };

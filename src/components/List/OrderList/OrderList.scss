@@ -1,0 +1,78 @@
+/* List CSS - START */
+.rw-order-list-wrapper {
+  overflow-y: auto;
+  width: 100%;
+  max-height: calc(100vh - 40px - 45px - 55px);
+  margin-bottom: 15px;
+  &.row {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: unset;
+    width: 100%;
+    max-height: unset;
+    margin-bottom: 15px;
+    .tiles {
+      width: 23.5%;
+      margin-bottom: 15px;
+      &:not(:nth-child(4n)) {
+        margin-right: 2%;
+      }
+    }
+  }
+  .no-cart-items {
+    text-align: center;
+  }
+  .tiles:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .rw-order-list-wrapper {
+    &.row {
+      margin-bottom: 0;
+      .tiles {
+        width: 32%;
+        &:not(:nth-child(3n)) {
+          margin-right: 2%;
+        }
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .rw-order-list-wrapper {
+    &.row {
+      margin-bottom: 0;
+      .tiles {
+        width: 49%;
+        &:not(:nth-child(2n)) {
+          margin-right: 2%;
+        }
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .rw-order-list-wrapper {
+    &.row {
+      margin-bottom: 0;
+      .tiles {
+        width: 100%;
+        &:not(:nth-child(4n)) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+/* List CSS - END */

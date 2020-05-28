@@ -59,7 +59,7 @@ export default class AboutUsScreen extends React.Component {
           alt={Strings.APPLICATION.ABOUT_US_SCREEN.IMAGES.MIDDLE_IMAGE_ALT_TEXT}
         />
         <FeaturesList data={this.state.data} />
-        <Button size="medium" />
+        <Button size="small" route={Strings.APPLICATION.DETAILS_PAGE_ROUTE} />
       </div>
     );
     return content;

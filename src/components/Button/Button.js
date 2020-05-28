@@ -6,10 +6,25 @@ import "./Button.scss";
 
 const Button = props => {
   const _buttonClick = () => {
-    props.history.push(Strings.APPLICATION.DETAILS_PAGE_ROUTE + props.params);
+    if (
+      props.action ===
+      Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.ADD_TO_CART
+    ) {
+      props.addToCart();
+    } else if (
+      props.action ===
+      Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.WISHLIST
+    ) {
+      props.addToWishList();
+    } else {
+      props.history.push(props.route);
+    }
   };
   return (
-    <button className={`button ${props.theme} ${props.size}`} onClick={_buttonClick}>
+    <button
+      className={`button ${props.theme} ${props.size}`}
+      onClick={_buttonClick}
+    >
       {props.text}
     </button>
   );
@@ -18,13 +33,16 @@ const Button = props => {
 Button.defaultProps = {
   text: "Shop Now",
   theme: "dark",
-  size: ""
+  size: "",
+  action: "",
+  route: ""
 };
 
 Button.propTypes = {
   text: PropTypes.string,
   theme: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  action: PropTypes.string
 };
 
 export default withRouter(Button);
