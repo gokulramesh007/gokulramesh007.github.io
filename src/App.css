@@ -15,6 +15,9 @@ html body {
   --body-primary-grey: #f7f7f7;
   --white: #fff;
   --black: #000;
+  --dark-grey: #808080;
+  --mild-grey: #efecec;
+  --dark-red: #840615;
 
   /* Size Variables */
   --h1: 38px;

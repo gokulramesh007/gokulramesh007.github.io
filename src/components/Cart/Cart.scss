@@ -1,0 +1,19 @@
+.rw-cart-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 40px);
+  .rw-cart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .cart-title {
+      font-size: var(--h5);
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+  }
+}

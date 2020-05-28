@@ -1,29 +1,40 @@
 /* Button CSS - START */
 .button {
   padding: 10px 20px;
-  border: 1px solid var(--primary);
   text-transform: uppercase;
   font-family: 'IBM Plex Sans', sans-serif;
-  border-radius: 5px;
+  border-radius: 3px;
+  color: var(--white);
   &.dark {
     background-color: var(--primary);
-    color: var(--white);
+    border: 1px solid var(--primary);
   }
   &.light {
-    background-color: var(--white);
-    color: var(--primary);
+    background-color: var(--dark-grey);
+    border: 1px solid var(--dark-grey);
   }
   &.large{
     width: 100%;
     font-size: var(--input);
   }
   &.medium{
-    width: 250px;
-    font-size: var(--regular);
+    width: 49%;
+    padding: 7px 10px;
+    font-size: var(--smaller);
   }
   &.small{
-    width: 150px;
-    font-size: var(--small);
+    width: 24%;
+    font-size: var(--regular15);
+  }
+}
+@media only screen and (max-width: 900px) {
+  .button {
+    &.medium{
+      width: 100%;
+    }
+    &.small{
+      width: 100%;
+    }
   }
 }
 /* Button CSS - END */

@@ -1,0 +1,51 @@
+.menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  height: 100vh;
+  .logo {
+    width: 80%;
+    flex: 1;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .categories {
+    flex: 1;
+    width: 100%;
+    text-align: center;
+    .category {
+      color: var(--white);
+      text-decoration: none;
+      display: block;
+      text-transform: uppercase;
+      padding: 10px;
+      &:hover {
+        background-color: var(--dark-red);
+        cursor: pointer;
+      }
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .about-us-wrapper {
+    flex: 1;
+    width: 100%;
+    text-align: center;
+    .about-us {
+      display: block;
+      color: var(--white);
+      text-transform: uppercase;
+      padding: 10px;
+      text-decoration: none;
+      &:hover {
+        background-color: var(--dark-red);
+        cursor: pointer;
+      }
+    }
+  }
+}
