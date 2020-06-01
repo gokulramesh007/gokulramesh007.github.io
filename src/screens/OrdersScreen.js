@@ -85,17 +85,61 @@ export default class OrdersScreen extends React.Component {
     return content;
   };
 
-  _removeItemFromCart = response => {
-    let cartItems = this.state.cartItems;
-    cartItems.forEach((item, index) => {
-      if (item.id === response.id) {
-        cartItems.splice(index);
-        this.setState({
-          cartItems: cartItems
-        });
-        return true;
+  _addToCart = response => {
+    let cartItems = this.state.cartItems,
+      newItem = true;
+
+    for (let i = 0; i < cartItems.length; i++) {
+      console.log(cartItems[i].id + " " + response.id);
+      if (cartItems[i].id === response.id) {
+        let count = cartItems[i].count || 1;
+        console.log(count);
+        if (count < 9) {
+          cartItems[i]["count"] = count + 1;
+          this.setState({
+            cartItems: cartItems
+          });
+        } else {
+          alert(
+            "Can't add more than 9 items of the same product! Kindly place a new order."
+          );
+        }
+        newItem = false;
+        break;
       }
-    });
+    }
+    if (newItem) {
+      this.setState({
+        cartItems: cartItems.concat(response)
+      });
+    }
+    console.log("cartItems : ", cartItems);
+  };
+
+  _removeItemFromCart = (response, type) => {
+    let cartItems = this.state.cartItems;
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].id === response.id) {
+        if (
+          type === Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REMOVE_ALL
+        ) {
+          cartItems.splice(i, 1);
+          this.setState({
+            cartItems: cartItems
+          });
+        } else {
+          let count = cartItems[i].count || 1;
+          cartItems[i].count = count > 1 ? cartItems[i].count - 1 : count;
+          if (count - 1 <= 0) {
+            cartItems.splice(i, 1);
+          }
+          this.setState({
+            cartItems: cartItems
+          });
+        }
+        break;
+      }
+    }
   };
 
   _renderOrderDetails = () => {
@@ -112,9 +156,16 @@ export default class OrdersScreen extends React.Component {
           <OrderList
             data={this.state.cartItems}
             type="row"
-            removeItemFromCart={response => {
-              this._removeItemFromCart(response);
+            removeItemFromCart={(item, type) => {
+              type =
+                type ||
+                Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REMOVE_ALL;
+              this._removeItemFromCart(item, type);
             }}
+            addToCart={response => {
+              this._addToCart(response);
+            }}
+            disabled={true}
           />
         </div>
       : <div className="order-info">

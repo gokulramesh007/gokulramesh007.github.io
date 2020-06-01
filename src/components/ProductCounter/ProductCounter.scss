@@ -1,0 +1,9 @@
+.rw-product-counter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    color: var(--black);
+    margin: 0 3px;
+  }
+}

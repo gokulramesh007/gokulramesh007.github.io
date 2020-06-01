@@ -22,7 +22,9 @@
   .cart-actions {
     flex: 1;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     color: var(--primary);
     font-size: var(--smaller);
     .remove-button{

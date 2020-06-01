@@ -66,6 +66,7 @@ export default class AboutUsScreen extends React.Component {
   };
 
   /**** HELPER FUNCTIONS END ****/
+
   render() {
     const { isLoading } = this.state;
     return (

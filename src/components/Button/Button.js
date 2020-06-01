@@ -16,6 +16,16 @@ const Button = props => {
       Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.WISHLIST
     ) {
       props.addToWishList();
+    } else if (
+      props.action ===
+      Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.INCREASE_ITEM_COUNT
+    ) {
+      props.addToCart();
+    } else if (
+      props.action ===
+      Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REDUCE_ITEM_COUNT
+    ) {
+      props.removeItemFromCart();
     } else {
       props.history.push(props.route);
     }
