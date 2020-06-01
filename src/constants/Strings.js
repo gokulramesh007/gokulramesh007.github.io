@@ -35,7 +35,11 @@ const Strings = {
       },
       BUTTON_ACTION: {
         ADD_TO_CART: "add-to-cart",
-        WISHLIST: "wishlist"
+        WISHLIST: "wishlist",
+        REDUCE_ITEM_COUNT: "reduce-item-count",
+        INCREASE_ITEM_COUNT: "increase-item-count",
+        REDUCE: "reduce",
+        REMOVE_ALL: "remove-all"
       },
       NO_CART_ITEMS: "No Items in Cart."
     },

@@ -8,10 +8,18 @@
   &.dark {
     background-color: var(--primary);
     border: 1px solid var(--primary);
+    &:hover{
+      background-color: var(--white);
+      color: var(--primary);
+    }
   }
   &.light {
     background-color: var(--dark-grey);
     border: 1px solid var(--dark-grey);
+    &:hover{
+      background-color: var(--white);
+      color: var(--dark-grey);
+    }
   }
   &.large{
     width: 100%;
@@ -25,6 +33,13 @@
   &.small{
     width: 24%;
     font-size: var(--regular15);
+  }
+  &.tiny{
+    padding: 2px 4px;
+    
+  }
+  &:focus{
+    outline: none;
   }
 }
 @media only screen and (max-width: 900px) {

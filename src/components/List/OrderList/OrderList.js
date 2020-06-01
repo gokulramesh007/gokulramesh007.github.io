@@ -20,9 +20,14 @@ const OrderList = props => {
           <div className="tiles" key={item.id}>
             <OrderTile
               data={item}
-              removeItemFromCart={() => {
-                props.removeItemFromCart(item);
+              removeItemFromCart={(item, type) => {
+                type = type || Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REMOVE_ALL;
+                props.removeItemFromCart(item, type);
               }}
+              addToCart={response => {
+                props.addToCart(response);
+              }}
+              disabled={props.disabled}
             />
           </div>
         );
@@ -40,12 +45,14 @@ const OrderList = props => {
 
 OrderList.defaultProps = {
   data: [],
-  type: ""
+  type: "",
+  disabled: false
 };
 
 OrderList.propTypes = {
   data: PropTypes.array.isRequired,
-  type: PropTypes.string
+  type: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default OrderList;
