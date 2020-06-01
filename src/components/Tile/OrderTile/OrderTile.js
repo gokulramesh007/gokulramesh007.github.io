@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ProductCounter } from "../../../components";
+import { Strings } from "../../../constants";
 import "./OrderTile.scss";
 
 const OrderTile = props => {
-  const { name, image, price } = props.data;
+  const { name, image, price, count } = props.data;
   return (
     <div className="order-tile">
       <div
@@ -18,26 +20,47 @@ const OrderTile = props => {
           {price}
         </div>
       </div>
-      <div className="cart-actions">
-        <div
-          className="remove-button"
-          onClick={() => {
-            props.removeItemFromCart();
-          }}
-        >
-          REMOVE
-        </div>
-      </div>
+      {props.disabled
+        ? <div>
+            ({props.data.count || 1})
+          </div>
+        : <div className="cart-actions">
+            <ProductCounter
+              count={count}
+              addToCart={() => {
+                props.addToCart(props.data);
+              }}
+              removeItemFromCart={() => {
+                props.removeItemFromCart(
+                  props.data,
+                  Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REDUCE
+                );
+              }}
+            />
+            <div
+              className="remove-button"
+              onClick={() => {
+                props.removeItemFromCart(
+                  props.data,
+                  Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REMOVE_ALL
+                );
+              }}
+            >
+              REMOVE
+            </div>
+          </div>}
     </div>
   );
 };
 
 OrderTile.defaultProps = {
-  data: {}
+  data: {},
+  disabled: false
 };
 
 OrderTile.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  disabled: PropTypes.bool
 };
 
 export default OrderTile;

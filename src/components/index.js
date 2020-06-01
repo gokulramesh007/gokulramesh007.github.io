@@ -6,6 +6,7 @@ import { FeaturesList, ProductList, OrderList } from "./List";
 import { FeatureTile, ProductTile, OrderTile } from "./Tile";
 import Menu from "./Menu/Menu";
 import Cart from "./Cart/Cart";
+import ProductCounter from "./ProductCounter/ProductCounter";
 
 export {
   Button,
@@ -19,5 +20,6 @@ export {
   ProductTile,
   OrderTile,
   Menu,
-  Cart
+  Cart,
+  ProductCounter
 };

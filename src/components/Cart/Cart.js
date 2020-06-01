@@ -22,8 +22,11 @@ const Cart = props => {
         </div>
         <OrderList
           data={props.data}
-          removeItemFromCart={response => {
-            props.removeItemFromCart(response);
+          removeItemFromCart={(response, type) => {
+            props.removeItemFromCart(response, type);
+          }}
+          addToCart={response => {
+            props.addToCart(response);
           }}
         />
       </div>

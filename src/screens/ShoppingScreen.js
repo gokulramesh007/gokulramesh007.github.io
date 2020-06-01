@@ -1,5 +1,5 @@
 import React from "react";
-import { Strings } from "../constants";
+import { Strings, Messages } from "../constants";
 import { Menu, ProductList, Cart, Loader } from "../components";
 import { fetchProducts } from "../Services";
 import "./ShoppingScreen.scss";
@@ -16,28 +16,19 @@ export default class ShoppingScreen extends React.Component {
     };
   }
 
+  /**** LIFECYCLE METHODS START ****/
+
   componentDidMount = () => {
-    let category =
-      this.props.match.params.category ||
-      Strings.APPLICATION.ROUTES.DEFAULT_CATEGORY;
-    this.setState({
-      category: category
-    });
-    console.log("componentDidMount : ", category);
-    this._fetchProducts(category);
+    this._initialLoad(this.props);
   };
 
   componentWillReceiveProps = props => {
-    let category =
-      props.match.params.category ||
-      Strings.APPLICATION.ROUTES.DEFAULT_CATEGORY;
-    this.setState({
-      isLoading: true,
-      category: category
-    });
-    console.log("componentWillReceiveProps : ", category);
-    this._fetchProducts(category);
+    this._initialLoad(props);
   };
+
+  /**** LIFECYCLE METHODS END ****/
+
+  /**** SERVICE CALLS START ****/
 
   _fetchProducts = category => {
     fetchProducts(category)
@@ -56,6 +47,21 @@ export default class ShoppingScreen extends React.Component {
       });
   };
 
+  /**** SERVICE CALLS END ****/
+
+  /**** HELPER FUNCTIONS START ****/
+
+  _initialLoad = props => {
+    let category =
+      props.match.params.category ||
+      Strings.APPLICATION.ROUTES.DEFAULT_CATEGORY;
+    this.setState({
+      isLoading: true,
+      category: category
+    });
+    this._fetchProducts(category);
+  };
+
   _addToWishList = response => {
     let wishList = this.state.wishList;
     this.setState({
@@ -64,24 +70,58 @@ export default class ShoppingScreen extends React.Component {
   };
 
   _addToCart = response => {
-    let cartItems = this.state.cartItems;
-    this.setState({
-      cartItems: cartItems.concat(response)
-    });
+    let cartItems = this.state.cartItems,
+      newItem = true;
+
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].id === response.id) {
+        let count = cartItems[i].count || 1;
+        if (count < 9) {
+          cartItems[i]["count"] = count + 1;
+          this.setState({
+            cartItems: cartItems
+          });
+        } else {
+          alert(Messages.CART.ITEM_COUNT_EXCEPTION);
+        }
+        newItem = false;
+        break;
+      }
+    }
+    if (newItem) {
+      this.setState({
+        cartItems: cartItems.concat(response)
+      });
+    }
   };
 
-  _removeItemFromCart = response => {
+  _removeItemFromCart = (response, type) => {
     let cartItems = this.state.cartItems;
-    cartItems.forEach((item, index) => {
-      if (item.id === response.id) {
-        cartItems.splice(index);
-        this.setState({
-          cartItems: cartItems
-        });
-        return true;
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].id === response.id) {
+        if (
+          type === Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REMOVE_ALL
+        ) {
+          cartItems.splice(i, 1);
+          this.setState({
+            cartItems: cartItems
+          });
+        } else {
+          let count = cartItems[i].count || 1;
+          cartItems[i].count = count > 1 ? cartItems[i].count - 1 : count;
+          if (count - 1 <= 0) {
+            cartItems.splice(i, 1);
+          }
+          this.setState({
+            cartItems: cartItems
+          });
+        }
+        break;
       }
-    });
+    }
   };
+
+  /**** HELPER FUNCTIONS END ****/
 
   render() {
     const { isLoading, wishList, cartItems } = this.state;
@@ -120,8 +160,11 @@ export default class ShoppingScreen extends React.Component {
         <div className="rw-order-summary">
           <Cart
             data={cartItems}
-            removeItemFromCart={response => {
-              this._removeItemFromCart(response);
+            removeItemFromCart={(response, type) => {
+              this._removeItemFromCart(response, type);
+            }}
+            addToCart={response => {
+              this._addToCart(response);
             }}
           />
         </div>
