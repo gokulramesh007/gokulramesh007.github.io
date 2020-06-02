@@ -5,6 +5,7 @@ import Loader from "./Loader/Loader";
 import { FeaturesList, ProductList, OrderList } from "./List";
 import { FeatureTile, ProductTile, OrderTile } from "./Tile";
 import Menu from "./Menu/Menu";
+import MenuItem from "./Menu/MenuItem";
 import Cart from "./Cart/Cart";
 import ProductCounter from "./ProductCounter/ProductCounter";
 
@@ -20,6 +21,7 @@ export {
   ProductTile,
   OrderTile,
   Menu,
+  MenuItem,
   Cart,
   ProductCounter
 };

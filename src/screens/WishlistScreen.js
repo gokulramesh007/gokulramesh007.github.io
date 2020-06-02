@@ -1,23 +1,14 @@
 import React from "react";
-import {
-  Header,
-  Container,
-  FeaturesList,
-  Button,
-  OrderList,
-  Loader
-} from "../components";
+import { Header, Container, Button, OrderList, Loader } from "../components";
 import { Strings } from "../constants";
-import { features } from "../Services";
 import "./OrdersScreen.scss";
 
-export default class OrdersScreen extends React.Component {
+export default class WishlistScreen extends React.Component {
   constructor() {
     super();
     this.state = {
       isLoading: true,
-      data: [],
-      cartItems: []
+      wishList: []
     };
   }
 
@@ -27,42 +18,18 @@ export default class OrdersScreen extends React.Component {
     let params =
         this.props.location &&
         this.props.location.state &&
-        this.props.location.state.cartItems,
-      cartItems = [];
+        this.props.location.state.data,
+      wishList = [];
     if (params) {
-      cartItems = JSON.parse(params);
+      wishList = params;
     }
     this.setState({
-      cartItems: cartItems
+      wishList: wishList,
+      isLoading: false
     });
-    this._fetchFeatures();
   };
 
   /**** LIFECYCLE METHODS END ****/
-
-  /**** SERVICE CALLS START ****/
-
-  _fetchFeatures = () => {
-    features
-      .fetchFeatures()
-      .then(response => {
-        this.setState({
-          isLoading: false
-        });
-        if (response && response.status === 200) {
-          this.setState({
-            data: response.data
-          });
-        } else {
-          console.log(response.statusText);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-  /**** SERVICE CALLS END ****/
 
   /**** HELPER FUNCTIONS START ****/
 
@@ -75,7 +42,6 @@ export default class OrdersScreen extends React.Component {
             {this._renderOrderDetails()}
           </Container>
         </div>
-        <FeaturesList data={this.state.data} />
         <Button
           size="small"
           text={Strings.APPLICATION.ORDERS_SCREEN.BUTTON.CONTINUE_SHOPPING}
@@ -89,21 +55,16 @@ export default class OrdersScreen extends React.Component {
   };
 
   _renderOrderDetails = () => {
-    return this.state.cartItems.length > 0
+    return this.state.wishList.length > 0
       ? <div className="order-info">
           <div className="details">
-            <h1>Order Placed</h1>
-            <p>Your Order has been successfully placed.</p>
-            <div>
-              You can track your orders online through the Invoice Number.
-            </div>
-            <div>Thank you for shopping with us.</div>
+            <h1>WISHLIST</h1>
           </div>
-          <OrderList data={this.state.cartItems} type="row" disabled={true} />
+          <OrderList data={this.state.wishList} type="row" disabled={true} />
         </div>
       : <div className="order-info">
           <div className="details">
-            <h3>Kindly purchase some items to check out!</h3>
+            <h3>No Items in Wishlist!</h3>
           </div>
         </div>;
   };

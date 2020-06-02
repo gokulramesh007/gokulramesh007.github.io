@@ -1,12 +1,6 @@
-import axios from "axios";
+import API from "./axiosService";
 import { Strings } from "../constants";
 
-export const fetchFeatures = async () => {
-  try {
-    let response = await axios.get(Strings.APPLICATION.API.FEATURES, {});
-    return response;
-  } catch (error) {
-    console.log("Network error : ", error);
-    return error.message;
-  }
+export default {
+  fetchFeatures: () => API(Strings.APPLICATION.API.FEATURES)
 };

@@ -6,6 +6,7 @@ const Strings = {
       ORDER_SCREEN: "/confirmOrder",
       ABOUT_US_SCREEN: "/about",
       SHOP: "/shop/:category",
+      WISHLIST_SCREEN: "/wishlist",
       DEFAULT_CATEGORY: "men"
     },
     API: {
@@ -26,7 +27,8 @@ const Strings = {
             WOMEN: "/shop/women",
             KIDS: "/shop/kids",
           },
-          ABOUT_US: "/about"
+          ABOUT_US: "/about",
+          WISHLIST: "/wishlist"
         }
       },
       USER_DETAILS: {

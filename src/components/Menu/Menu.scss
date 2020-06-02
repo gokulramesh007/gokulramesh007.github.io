@@ -13,7 +13,8 @@
       height: auto;
     }
   }
-  .categories {
+  .categories,
+  .about-us-wrapper {
     flex: 1;
     width: 100%;
     text-align: center;
@@ -23,28 +24,14 @@
       display: block;
       text-transform: uppercase;
       padding: 10px;
-      &:hover {
+      font-weight: 500;
+      &:hover,
+      &.active {
         background-color: var(--dark-red);
         cursor: pointer;
       }
       &:not(:last-child) {
         margin-bottom: 5px;
-      }
-    }
-  }
-  .about-us-wrapper {
-    flex: 1;
-    width: 100%;
-    text-align: center;
-    .about-us {
-      display: block;
-      color: var(--white);
-      text-transform: uppercase;
-      padding: 10px;
-      text-decoration: none;
-      &:hover {
-        background-color: var(--dark-red);
-        cursor: pointer;
       }
     }
   }

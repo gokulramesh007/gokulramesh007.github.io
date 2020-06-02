@@ -10,12 +10,11 @@ const ProductCounter = props => {
       <Button
         text="-"
         size="tiny"
-        action={
-          Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REDUCE_ITEM_COUNT
-        }
-        removeItemFromCart={() => {
+        onClick={() => {
           if (props.count < 10) {
-            props.removeItemFromCart(Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REDUCE);
+            props.removeItemFromCart(
+              Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REDUCE
+            );
           }
         }}
       />
@@ -25,10 +24,7 @@ const ProductCounter = props => {
       <Button
         text="+"
         size="tiny"
-        action={
-          Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.INCREASE_ITEM_COUNT
-        }
-        addToCart={() => {
+        onClick={() => {
           if (props.count < 10) {
             props.addToCart();
           }

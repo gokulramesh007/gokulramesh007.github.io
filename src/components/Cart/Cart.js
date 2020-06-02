@@ -11,7 +11,7 @@ const Cart = props => {
       pathname: Strings.APPLICATION.ROUTES.ORDER_SCREEN,
       state: { cartItems: JSON.stringify(props.data) }
     };
-    return route;
+    props.history.push(route);
   };
 
   return (
@@ -30,7 +30,13 @@ const Cart = props => {
           }}
         />
       </div>
-      <Button size="large" text="PLACE ORDER" route={_renderRoute()} />
+      <Button
+        size="large"
+        text="PLACE ORDER"
+        onClick={() => {
+          _renderRoute();
+        }}
+      />
     </div>
   );
 };
