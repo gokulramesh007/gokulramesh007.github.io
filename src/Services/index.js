@@ -1,4 +1,4 @@
-import { fetchFeatures } from "./featureService";
-import { fetchProducts } from "./productService";
+import features from "./featureService";
+import products from "./productService";
 
-export { fetchFeatures, fetchProducts };
+export { features, products };

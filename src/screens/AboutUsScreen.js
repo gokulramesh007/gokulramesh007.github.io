@@ -1,7 +1,7 @@
 import React from "react";
 import { Header, Container, FeaturesList, Button, Loader } from "../components";
 import { Images, Strings } from "../constants";
-import { fetchFeatures } from "../Services";
+import { features } from "../Services";
 import "./AboutUsScreen.scss";
 
 export default class AboutUsScreen extends React.Component {
@@ -24,7 +24,8 @@ export default class AboutUsScreen extends React.Component {
   /**** SERVICE CALLS START ****/
 
   _fetchFeatures = () => {
-    fetchFeatures()
+    features
+      .fetchFeatures()
       .then(response => {
         this.setState({
           isLoading: false
@@ -59,7 +60,12 @@ export default class AboutUsScreen extends React.Component {
           alt={Strings.APPLICATION.ABOUT_US_SCREEN.IMAGES.MIDDLE_IMAGE_ALT_TEXT}
         />
         <FeaturesList data={this.state.data} />
-        <Button size="small" route={Strings.APPLICATION.DETAILS_PAGE_ROUTE} />
+        <Button
+          size="small"
+          onClick={() => {
+            this.props.history.push(Strings.APPLICATION.ROUTES.HOME_SCREEN);
+          }}
+        />
       </div>
     );
     return content;

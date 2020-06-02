@@ -1,7 +1,7 @@
 import React from "react";
 import { Strings, Messages } from "../constants";
 import { Menu, ProductList, Cart, Loader } from "../components";
-import { fetchProducts } from "../Services";
+import { products } from "../Services";
 import "./ShoppingScreen.scss";
 
 export default class ShoppingScreen extends React.Component {
@@ -19,6 +19,17 @@ export default class ShoppingScreen extends React.Component {
   /**** LIFECYCLE METHODS START ****/
 
   componentDidMount = () => {
+    let params =
+        this.props.location &&
+        this.props.location.state &&
+        this.props.location.state.data,
+      cartItems = [];
+    if (params) {
+      cartItems = params;
+      this.setState({
+        cartItems: cartItems
+      });
+    }
     this._initialLoad(this.props);
   };
 
@@ -31,7 +42,8 @@ export default class ShoppingScreen extends React.Component {
   /**** SERVICE CALLS START ****/
 
   _fetchProducts = category => {
-    fetchProducts(category)
+    products
+      .fetchProducts(category)
       .then(response => {
         if (response && response.status === 200) {
           this.setState({
@@ -67,6 +79,7 @@ export default class ShoppingScreen extends React.Component {
     this.setState({
       wishList: wishList.concat(response)
     });
+    alert("Item added to wishlist!");
   };
 
   _addToCart = response => {
@@ -102,20 +115,18 @@ export default class ShoppingScreen extends React.Component {
         if (
           type === Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.REMOVE_ALL
         ) {
+          cartItems[i].count = 1;
           cartItems.splice(i, 1);
-          this.setState({
-            cartItems: cartItems
-          });
         } else {
           let count = cartItems[i].count || 1;
           cartItems[i].count = count > 1 ? cartItems[i].count - 1 : count;
           if (count - 1 <= 0) {
             cartItems.splice(i, 1);
-          }
-          this.setState({
-            cartItems: cartItems
-          });
+          }    
         }
+        this.setState({
+          cartItems: cartItems
+        });
         break;
       }
     }
@@ -124,11 +135,11 @@ export default class ShoppingScreen extends React.Component {
   /**** HELPER FUNCTIONS END ****/
 
   render() {
-    const { isLoading, wishList, cartItems } = this.state;
+    const { isLoading, wishList, cartItems, category } = this.state;
     return (
       <div className="shopping-container">
         <div className="rw-sidemenu">
-          <Menu />
+          <Menu category={category} cartItems={cartItems} wishList={wishList} />
         </div>
         <div className="rw-list">
           <div className="rw-shopping-header">

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "../../../components";
-import { Strings } from "../../../constants";
 import "./ProductTile.scss";
 
 const ProductTile = props => {
@@ -28,18 +27,14 @@ const ProductTile = props => {
           <Button
             theme="light"
             text="WISHLIST"
-            action={Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.WISHLIST}
-            addToWishList={() => {
+            onClick={() => {
               props.addToWishList(props.data);
             }}
             size="medium"
           />
           <Button
             text="ADD TO BAG"
-            action={
-              Strings.APPLICATION.SHOPPING_SCREEN.BUTTON_ACTION.ADD_TO_CART
-            }
-            addToCart={() => {
+            onClick={() => {
               props.addToCart(props.data);
             }}
             size="medium"
