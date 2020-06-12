@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import OrdersScreen from "../screens/OrdersScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
 import ShoppingScreen from "../screens/ShoppingScreen";
@@ -8,7 +8,7 @@ import { Strings } from "../constants";
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Route
         path={[Strings.APPLICATION.ROUTES.HOME_SCREEN, Strings.APPLICATION.ROUTES.SHOP]}
         exact
@@ -30,7 +30,7 @@ const Routes = () => {
         path={Strings.APPLICATION.ROUTES.WISHLIST_SCREEN}
         component={WishlistScreen}
       />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
