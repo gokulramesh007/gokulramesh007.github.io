@@ -1,7 +1,7 @@
 {
   "name": "red-and-white",
   "version": "0.1.0",
-  "homepage": "http://gokulramesh007.github.io/",
+  "homepage": "http://gokulramesh007.github.io/red-and-white/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "origin -d build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
