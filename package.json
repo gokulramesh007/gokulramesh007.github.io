@@ -1,7 +1,7 @@
 {
   "name": "red-and-white",
   "version": "0.1.0",
-  "homepage": "http://gokulramesh007.github.io/red-and-white/",
+  "homepage": "http://gokulramesh007.github.io/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
