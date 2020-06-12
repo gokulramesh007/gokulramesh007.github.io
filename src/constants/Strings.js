@@ -10,8 +10,8 @@ const Strings = {
       DEFAULT_CATEGORY: "men"
     },
     API: {
-      FEATURES: "http://nijinserver.herokuapp.com/dummy/shopping/features",
-      PRODUCTS: "http://nijinserver.herokuapp.com/dummy/shopping/shop/"
+      FEATURES: "https://5ee317668b27f300160953b7.mockapi.io/shopping/features",
+      PRODUCTS: "https://5ee317668b27f300160953b7.mockapi.io/shopping/"
     },
     ABOUT_US_SCREEN: {
       IMAGES: {
